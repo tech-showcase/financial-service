@@ -2,7 +2,7 @@ package model
 
 import (
 	"encoding/json"
-	"financial-service/helper"
+	"github.com/tech-showcase/financial-service/helper"
 	"fmt"
 	"io/ioutil"
 	"net/http"
