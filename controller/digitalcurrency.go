@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"github.com/tech-showcase/financial-service/config"
 	"github.com/tech-showcase/financial-service/model"
 	dcProto "github.com/tech-showcase/financial-service/proto/digitalcurrency"
 )
@@ -15,8 +16,8 @@ func NewDigitalCurrencyServer() dcProto.DigitalCurrencyServer {
 }
 
 func (instance *DigitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *dcProto.ConvertToSpecificCurrencyRequest) (resp *dcProto.ConvertToSpecificCurrencyResponse, err error) {
-	serverAddress := "http://rest-sandbox.coinapi.io/"
-	apiKey := "A82B67D9-AF26-422D-87DE-8FED914E436E"
+	serverAddress := config.Configuration.DigitalCurrency.ServerAddress
+	apiKey := config.Configuration.DigitalCurrency.ApiKey
 	dcModel := model.NewDCBlueprint(serverAddress, apiKey)
 
 	amount := req.Amount
