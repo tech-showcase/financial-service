@@ -7,16 +7,6 @@ import (
 	"os"
 )
 
-var Configuration = presenter.Config{}
-
-func init(){
-	var err error
-	Configuration, err = Parse()
-	if err != nil{
-		panic(err)
-	}
-}
-
 func Parse() (config presenter.Config, err error) {
 	configPath := GetPath()
 
@@ -39,7 +29,7 @@ func GetPath() string {
 		environment = environmentFromEnvVar
 	}
 
-	configPath := "config/config.json"
+	configPath := "config/config-dev.json"
 	if configPathFromEnvVar := os.Getenv(environment + "_CONFIG_PATH"); configPathFromEnvVar != "" {
 		configPath = configPathFromEnvVar
 	}
