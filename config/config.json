@@ -1,6 +1,9 @@
 {
   "digital_currency": {
-    "server_address": "http://dummy.address/",
-    "api_key": "dummy-key"
+    "server_address": "http://rest-sandbox.coinapi.io/",
+    "api_key": "A82B67D9-AF26-422D-87DE-8FED914E436E"
+  },
+  "auth": {
+    "server_address": "http://localhost:8082"
   }
 }
