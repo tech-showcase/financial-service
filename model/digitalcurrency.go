@@ -34,7 +34,7 @@ func NewDCBlueprint(serverAddress, apiKey string) DCInterface {
 }
 
 func (instance *DCBlueprint) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
-	endpoint, err := helper.JoinURL(
+	endpoint, _ := helper.JoinURL(
 		instance.ServerAddress,
 		fmt.Sprintf("/v1/exchangerate/%s/%s", assetIdBase, assetIdQuote))
 
