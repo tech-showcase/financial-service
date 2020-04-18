@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"github.com/tech-showcase/financial-service/presenter"
 	"os"
 	"reflect"
@@ -14,14 +13,15 @@ func TestParse(t *testing.T) {
 			ServerAddress: "http://dummy.address/",
 			ApiKey:        "dummy-key",
 		},
+		Auth: presenter.Auth{
+			ServerAddress: "http://dummy.address/",
+		},
 	}
 
-	configPath := "config.json"
+	configPath := "config-example.json"
 	os.Setenv("DEV_CONFIG_PATH", configPath)
 
 	config, err := Parse()
-
-	fmt.Println(config)
 
 	if err != nil {
 		t.Fatal("an error has occurred")
