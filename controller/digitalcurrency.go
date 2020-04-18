@@ -2,7 +2,7 @@ package controller
 
 import (
 	"context"
-	"github.com/tech-showcase/financial-service/config"
+	"github.com/tech-showcase/financial-service/global"
 	"github.com/tech-showcase/financial-service/model"
 	dcProto "github.com/tech-showcase/financial-service/proto/digitalcurrency"
 )
@@ -16,8 +16,8 @@ func NewDigitalCurrencyServer() dcProto.DigitalCurrencyServer {
 }
 
 func (instance *DigitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *dcProto.ConvertToSpecificCurrencyRequest) (resp *dcProto.ConvertToSpecificCurrencyResponse, err error) {
-	serverAddress := config.Configuration.DigitalCurrency.ServerAddress
-	apiKey := config.Configuration.DigitalCurrency.ApiKey
+	serverAddress := global.Configuration.DigitalCurrency.ServerAddress
+	apiKey := global.Configuration.DigitalCurrency.ApiKey
 	dcModel := model.NewDCBlueprint(serverAddress, apiKey)
 
 	amount := req.Amount

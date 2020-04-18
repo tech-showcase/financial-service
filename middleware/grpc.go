@@ -3,7 +3,7 @@ package middleware
 import (
 	"context"
 	"errors"
-	"github.com/tech-showcase/financial-service/config"
+	"github.com/tech-showcase/financial-service/global"
 	"github.com/tech-showcase/financial-service/helper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -40,7 +40,7 @@ func AuthorizationInterceptor(ctx context.Context,
 }
 
 func AuthorizeJWT(token string) error {
-	authEndpoint, _ := helper.JoinURL(config.Configuration.Auth.ServerAddress, "/api/user")
+	authEndpoint, _ := helper.JoinURL(global.Configuration.Auth.ServerAddress, "/api/user")
 
 	req, err := http.NewRequest("GET", authEndpoint, nil)
 	if err != nil {
