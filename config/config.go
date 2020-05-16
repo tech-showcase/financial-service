@@ -1,8 +1,6 @@
 package config
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"os"
 )
 
@@ -22,32 +20,24 @@ type (
 	}
 )
 
-func Read() (config Config, err error) {
-	configPath := GetPath()
-
-	configFileContent, err := ioutil.ReadFile(configPath)
-	if err != nil {
-		return
-	}
-
-	err = json.Unmarshal(configFileContent, &config)
-	if err != nil {
-		return
-	}
+func Read() (config Config) {
+	config = readFromEnvVar()
 
 	return
 }
 
-func GetPath() string {
-	environment := "DEV"
-	if environmentFromEnvVar := os.Getenv("ENVIRONMENT"); environmentFromEnvVar != "" {
-		environment = environmentFromEnvVar
-	}
+func readFromEnvVar() (config Config) {
+	config.DigitalCurrency.ServerAddress = readEnvVarWithDefaultValue("DC_SERVER_ADDRESS", "http://localhost")
+	config.DigitalCurrency.ApiKey = readEnvVarWithDefaultValue("DC_API_KEY", "apiKey")
 
-	configPath := "config/config-dev.json"
-	if configPathFromEnvVar := os.Getenv(environment + "_CONFIG_PATH"); configPathFromEnvVar != "" {
-		configPath = configPathFromEnvVar
-	}
+	config.Auth.ServerAddress = readEnvVarWithDefaultValue("AUTH_SERVER_ADDRESS", "http://localhost")
 
-	return configPath
+	return
+}
+
+func readEnvVarWithDefaultValue(key, defaultValue string) string {
+	if envVarValue, ok := os.LookupEnv(key); ok {
+		return envVarValue
+	}
+	return defaultValue
 }
