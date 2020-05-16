@@ -7,9 +7,5 @@ import (
 var Configuration = config.Config{}
 
 func init() {
-	var err error
-	Configuration, err = config.Read()
-	if err != nil {
-		panic(err)
-	}
+	Configuration = config.Read()
 }
