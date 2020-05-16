@@ -29,7 +29,7 @@ func AuthorizationInterceptor(ctx context.Context,
 		return nil, status.Errorf(codes.Unauthenticated, "Authorization token is not supplied")
 	}
 
-	err := AuthorizeJWT(authHeader[0])
+	err := authorizeJWT(authHeader[0])
 	if err != nil {
 		return nil, status.Errorf(codes.Unauthenticated, err.Error())
 	}
@@ -39,7 +39,7 @@ func AuthorizationInterceptor(ctx context.Context,
 	return h, err
 }
 
-func AuthorizeJWT(token string) error {
+func authorizeJWT(token string) error {
 	authEndpoint, _ := helper.JoinURL(global.Configuration.Auth.ServerAddress, "/api/user")
 
 	req, err := http.NewRequest("GET", authEndpoint, nil)
