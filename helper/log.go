@@ -6,7 +6,7 @@ import (
 )
 
 type (
-	LogBlueprint struct {
+	logBlueprint struct {
 		logger *zap.Logger
 	}
 	LogInterface interface {
@@ -18,7 +18,7 @@ type (
 )
 
 func NewLogBlueprint() LogInterface {
-	instance := LogBlueprint{}
+	instance := logBlueprint{}
 
 	logger, err := zap.NewProduction(zap.AddCallerSkip(1))
 	if err != nil {
@@ -29,7 +29,7 @@ func NewLogBlueprint() LogInterface {
 	return &instance
 }
 
-func (instance *LogBlueprint) Info(message string, additionalData map[string]string) {
+func (instance *logBlueprint) Info(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Info(
@@ -38,7 +38,7 @@ func (instance *LogBlueprint) Info(message string, additionalData map[string]str
 	)
 }
 
-func (instance *LogBlueprint) Debug(message string, additionalData map[string]string) {
+func (instance *logBlueprint) Debug(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Debug(
@@ -47,7 +47,7 @@ func (instance *LogBlueprint) Debug(message string, additionalData map[string]st
 	)
 }
 
-func (instance *LogBlueprint) Warn(message string, additionalData map[string]string) {
+func (instance *logBlueprint) Warn(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Warn(
@@ -56,7 +56,7 @@ func (instance *LogBlueprint) Warn(message string, additionalData map[string]str
 	)
 }
 
-func (instance *LogBlueprint) Error(message string, additionalData map[string]string) {
+func (instance *logBlueprint) Error(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Error(
@@ -65,7 +65,7 @@ func (instance *LogBlueprint) Error(message string, additionalData map[string]st
 	)
 }
 
-func (instance *LogBlueprint) Construct(additionalData map[string]string) []zap.Field {
+func (instance *logBlueprint) Construct(additionalData map[string]string) []zap.Field {
 	fields := make([]zap.Field, 0)
 
 	additionalDataJson, _ := json.Marshal(additionalData)
