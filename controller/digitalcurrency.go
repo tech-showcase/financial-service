@@ -7,15 +7,15 @@ import (
 	dcProto "github.com/tech-showcase/financial-service/proto/digitalcurrency"
 )
 
-type DigitalCurrencyServer struct{}
+type digitalCurrencyServer struct{}
 
 func NewDigitalCurrencyServer() dcProto.DigitalCurrencyServer {
-	instance := DigitalCurrencyServer{}
+	instance := digitalCurrencyServer{}
 
 	return &instance
 }
 
-func (instance *DigitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *dcProto.ConvertToSpecificCurrencyRequest) (resp *dcProto.ConvertToSpecificCurrencyResponse, err error) {
+func (instance *digitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *dcProto.ConvertToSpecificCurrencyRequest) (resp *dcProto.ConvertToSpecificCurrencyResponse, err error) {
 	serverAddress := global.Configuration.DigitalCurrency.ServerAddress
 	apiKey := global.Configuration.DigitalCurrency.ApiKey
 	dcModel := model.NewDCBlueprint(serverAddress, apiKey)
