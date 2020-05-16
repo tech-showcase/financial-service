@@ -11,9 +11,9 @@ import (
 )
 
 func ActivateGRPC(port int) {
-	portStr := fmt.Sprintf(":%d", port)
+	lisAddress := fmt.Sprintf(":%d", port)
 
-	lis, err := net.Listen("tcp", portStr)
+	lis, err := net.Listen("tcp", lisAddress)
 	if err != nil {
 		panic(err)
 	}
