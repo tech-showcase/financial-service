@@ -9,7 +9,7 @@ import (
 )
 
 type (
-	DCBlueprint struct {
+	dcBlueprint struct {
 		ServerAddress string
 		ApiKey        string
 	}
@@ -26,14 +26,14 @@ type (
 )
 
 func NewDCBlueprint(serverAddress, apiKey string) DCInterface {
-	instance := DCBlueprint{}
+	instance := dcBlueprint{}
 	instance.ServerAddress = serverAddress
 	instance.ApiKey = apiKey
 
 	return &instance
 }
 
-func (instance *DCBlueprint) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
+func (instance *dcBlueprint) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
 	endpoint, _ := helper.JoinURL(
 		instance.ServerAddress,
 		fmt.Sprintf("/v1/exchangerate/%s/%s", assetIdBase, assetIdQuote))
