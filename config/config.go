@@ -2,12 +2,27 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/tech-showcase/financial-service/presenter"
 	"io/ioutil"
 	"os"
 )
 
-func Parse() (config presenter.Config, err error) {
+type (
+	Config struct {
+		DigitalCurrency DigitalCurrency `json:"digital_currency"`
+		Auth            Auth            `json:"auth"`
+	}
+
+	DigitalCurrency struct {
+		ServerAddress string `json:"server_address"`
+		ApiKey        string `json:"api_key"`
+	}
+
+	Auth struct {
+		ServerAddress string `json:"server_address"`
+	}
+)
+
+func Read() (config Config, err error) {
 	configPath := GetPath()
 
 	configFileContent, err := ioutil.ReadFile(configPath)

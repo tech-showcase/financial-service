@@ -1,19 +1,18 @@
 package config
 
 import (
-	"github.com/tech-showcase/financial-service/presenter"
 	"os"
 	"reflect"
 	"testing"
 )
 
 func TestParse(t *testing.T) {
-	expectedOutput := presenter.Config{
-		DigitalCurrency: presenter.DigitalCurrency{
+	expectedOutput := Config{
+		DigitalCurrency: DigitalCurrency{
 			ServerAddress: "http://dummy.address/",
 			ApiKey:        "dummy-key",
 		},
-		Auth: presenter.Auth{
+		Auth: Auth{
 			ServerAddress: "http://dummy.address/",
 		},
 	}
@@ -21,7 +20,7 @@ func TestParse(t *testing.T) {
 	configPath := "config-example.json"
 	os.Setenv("DEV_CONFIG_PATH", configPath)
 
-	config, err := Parse()
+	config, err := Read()
 
 	if err != nil {
 		t.Fatal("an error has occurred")

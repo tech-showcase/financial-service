@@ -2,14 +2,13 @@ package global
 
 import (
 	"github.com/tech-showcase/financial-service/config"
-	"github.com/tech-showcase/financial-service/presenter"
 )
 
-var Configuration = presenter.Config{}
+var Configuration = config.Config{}
 
 func init() {
 	var err error
-	Configuration, err = config.Parse()
+	Configuration, err = config.Read()
 	if err != nil {
 		panic(err)
 	}
