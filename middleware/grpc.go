@@ -46,7 +46,7 @@ func authorizeJWT(token string) error {
 	if err != nil {
 		return err
 	}
-	req.Header.Add("Authorization", token)
+	req.Header.Add("Authorization", "Bearer "+token)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
