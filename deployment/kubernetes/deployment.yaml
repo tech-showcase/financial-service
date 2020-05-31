@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financial-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: financial-service
+  template:
+    metadata:
+      labels:
+        app: financial-service
+    spec:
+      containers:
+        - name: financial-service
+          image: financial-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DC_SERVER_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: financial-service
+                  key: DC_SERVER_ADDRESS
+            - name: DC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: financial-service
+                  key: DC_API_KEY
+            - name: AUTH_SERVER_ADDRESS
+              value: http://auth-service:8080
+      volumes:
+        - name: financial-service
+          secret:
+            secretName: financial-service
