@@ -31,7 +31,3 @@ spec:
                   key: DC_API_KEY
             - name: AUTH_SERVER_ADDRESS
               value: http://auth-service:8080
-      volumes:
-        - name: financial-service
-          secret:
-            secretName: financial-service
