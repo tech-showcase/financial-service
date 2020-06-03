@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  name:  financial-service
+spec:
+  grpc: True
+  prefix: /DigitalCurrency/
+  rewrite: /DigitalCurrency/
+  service: http://financial-service:8080
