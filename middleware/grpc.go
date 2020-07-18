@@ -68,14 +68,14 @@ func LoggingInterceptor(ctx context.Context,
 
 	start := time.Now()
 
-	logger := helper.NewLogBlueprint()
+	logger := helper.NewLogger()
 	logger.Info("GRPC request processing is started", map[string]string{"method": info.FullMethod})
 
 	defer func() {
 		elapsedTime := time.Since(start)
 		elapsedTimeStr := strconv.Itoa(int(elapsedTime))
 
-		logger := helper.NewLogBlueprint()
+		logger := helper.NewLogger()
 		logger.Info("GRPC request processing is finished", map[string]string{"method": info.FullMethod, "elapsed_time": elapsedTimeStr})
 	}()
 

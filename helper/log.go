@@ -6,10 +6,10 @@ import (
 )
 
 type (
-	logBlueprint struct {
+	logger struct {
 		logger *zap.Logger
 	}
-	LogInterface interface {
+	Logger interface {
 		Info(message string, additionalData map[string]string)
 		Debug(message string, additionalData map[string]string)
 		Warn(message string, additionalData map[string]string)
@@ -17,8 +17,8 @@ type (
 	}
 )
 
-func NewLogBlueprint() LogInterface {
-	instance := logBlueprint{}
+func NewLogger() Logger {
+	instance := logger{}
 
 	logger, err := zap.NewProduction(zap.AddCallerSkip(1))
 	if err != nil {
@@ -29,7 +29,7 @@ func NewLogBlueprint() LogInterface {
 	return &instance
 }
 
-func (instance *logBlueprint) Info(message string, additionalData map[string]string) {
+func (instance *logger) Info(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Info(
@@ -38,7 +38,7 @@ func (instance *logBlueprint) Info(message string, additionalData map[string]str
 	)
 }
 
-func (instance *logBlueprint) Debug(message string, additionalData map[string]string) {
+func (instance *logger) Debug(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Debug(
@@ -47,7 +47,7 @@ func (instance *logBlueprint) Debug(message string, additionalData map[string]st
 	)
 }
 
-func (instance *logBlueprint) Warn(message string, additionalData map[string]string) {
+func (instance *logger) Warn(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Warn(
@@ -56,7 +56,7 @@ func (instance *logBlueprint) Warn(message string, additionalData map[string]str
 	)
 }
 
-func (instance *logBlueprint) Error(message string, additionalData map[string]string) {
+func (instance *logger) Error(message string, additionalData map[string]string) {
 	fields := instance.Construct(additionalData)
 
 	instance.logger.Error(
@@ -65,7 +65,7 @@ func (instance *logBlueprint) Error(message string, additionalData map[string]st
 	)
 }
 
-func (instance *logBlueprint) Construct(additionalData map[string]string) []zap.Field {
+func (instance *logger) Construct(additionalData map[string]string) []zap.Field {
 	fields := make([]zap.Field, 0)
 
 	additionalDataJson, _ := json.Marshal(additionalData)
