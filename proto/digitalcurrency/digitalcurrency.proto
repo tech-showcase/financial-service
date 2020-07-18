@@ -6,13 +6,11 @@ service DigitalCurrency {
 }
 
 message ConvertToSpecificCurrencyRequest {
-  int64 amount = 1;
+  float amount = 1;
   string baseCurrency = 2;
   string quoteCurrency = 3;
 }
 
 message ConvertToSpecificCurrencyResponse {
   float amount = 1;
-  string baseCurrency = 2;
-  string quoteCurrency = 3;
 }
