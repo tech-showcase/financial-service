@@ -5,18 +5,18 @@ import (
 )
 
 type (
-	ConvertToSpecificCurrencyReq struct {
+	ConvertRequest struct {
 		Amount        float64
 		BaseCurrency  string
 		QuoteCurrency string
 	}
 
-	ConvertToSpecificCurrencyResp struct {
+	ConvertResponse struct {
 		Amount float64
 	}
 )
 
-func ConvertToSpecificCurrency(req ConvertToSpecificCurrencyReq, digitalCurrencyRepo model.DigitalCurrencyRepo) (resp ConvertToSpecificCurrencyResp, err error) {
+func ConvertToSpecificCurrency(req ConvertRequest, digitalCurrencyRepo model.DigitalCurrencyRepo) (resp ConvertResponse, err error) {
 	convertedAmount, err := digitalCurrencyRepo.Convert(req.Amount, req.BaseCurrency, req.QuoteCurrency)
 	if err != nil {
 		return
