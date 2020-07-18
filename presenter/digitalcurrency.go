@@ -21,7 +21,7 @@ func (instance *digitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Con
 	apiKey := config.Instance.DigitalCurrency.ApiKey
 	digitalCurrencyRepo := model.NewDigitalCurrencyRepo(serverAddress, apiKey)
 
-	request := controller.ConvertToSpecificCurrencyReq{
+	request := controller.ConvertRequest{
 		Amount:        req.Amount,
 		BaseCurrency:  req.BaseCurrency,
 		QuoteCurrency: req.QuoteCurrency,
