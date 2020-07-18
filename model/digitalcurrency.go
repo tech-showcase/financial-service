@@ -2,19 +2,19 @@ package model
 
 import (
 	"encoding/json"
-	"github.com/tech-showcase/financial-service/helper"
 	"fmt"
+	"github.com/tech-showcase/financial-service/helper"
 	"io/ioutil"
 	"net/http"
 )
 
 type (
-	dcBlueprint struct {
+	dcRepo struct {
 		ServerAddress string
 		ApiKey        string
 	}
-	DCInterface interface {
-		Convert(value int64, base, quote string) (result float64, err error)
+	DCRepo interface {
+		Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error)
 	}
 
 	ResponseGetSpecificRate struct {
@@ -25,15 +25,15 @@ type (
 	}
 )
 
-func NewDCBlueprint(serverAddress, apiKey string) DCInterface {
-	instance := dcBlueprint{}
+func NewDCRepo(serverAddress, apiKey string) DCRepo {
+	instance := dcRepo{}
 	instance.ServerAddress = serverAddress
 	instance.ApiKey = apiKey
 
 	return &instance
 }
 
-func (instance *dcBlueprint) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
+func (instance *dcRepo) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
 	endpoint, _ := helper.JoinURL(
 		instance.ServerAddress,
 		fmt.Sprintf("/v1/exchangerate/%s/%s", assetIdBase, assetIdQuote))
