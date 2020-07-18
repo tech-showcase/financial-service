@@ -2,15 +2,15 @@ syntax = "proto3";
 option go_package = "proto/digitalcurrency";
 
 service DigitalCurrency {
-  rpc ConvertToSpecificCurrency(ConvertToSpecificCurrencyRequest) returns (ConvertToSpecificCurrencyResponse) {}
+  rpc ConvertToSpecificCurrency(ConvertCurrencyRequest) returns (ConvertCurrencyResponse) {}
 }
 
-message ConvertToSpecificCurrencyRequest {
+message ConvertCurrencyRequest {
   double amount = 1;
   string baseCurrency = 2;
   string quoteCurrency = 3;
 }
 
-message ConvertToSpecificCurrencyResponse {
+message ConvertCurrencyResponse {
   double amount = 1;
 }

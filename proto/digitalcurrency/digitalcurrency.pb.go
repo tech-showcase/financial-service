@@ -29,7 +29,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-type ConvertToSpecificCurrencyRequest struct {
+type ConvertCurrencyRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -39,8 +39,8 @@ type ConvertToSpecificCurrencyRequest struct {
 	QuoteCurrency string  `protobuf:"bytes,3,opt,name=quoteCurrency,proto3" json:"quoteCurrency,omitempty"`
 }
 
-func (x *ConvertToSpecificCurrencyRequest) Reset() {
-	*x = ConvertToSpecificCurrencyRequest{}
+func (x *ConvertCurrencyRequest) Reset() {
+	*x = ConvertCurrencyRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -48,13 +48,13 @@ func (x *ConvertToSpecificCurrencyRequest) Reset() {
 	}
 }
 
-func (x *ConvertToSpecificCurrencyRequest) String() string {
+func (x *ConvertCurrencyRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConvertToSpecificCurrencyRequest) ProtoMessage() {}
+func (*ConvertCurrencyRequest) ProtoMessage() {}
 
-func (x *ConvertToSpecificCurrencyRequest) ProtoReflect() protoreflect.Message {
+func (x *ConvertCurrencyRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -66,33 +66,33 @@ func (x *ConvertToSpecificCurrencyRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConvertToSpecificCurrencyRequest.ProtoReflect.Descriptor instead.
-func (*ConvertToSpecificCurrencyRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConvertCurrencyRequest.ProtoReflect.Descriptor instead.
+func (*ConvertCurrencyRequest) Descriptor() ([]byte, []int) {
 	return file_proto_digitalcurrency_digitalcurrency_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConvertToSpecificCurrencyRequest) GetAmount() float64 {
+func (x *ConvertCurrencyRequest) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *ConvertToSpecificCurrencyRequest) GetBaseCurrency() string {
+func (x *ConvertCurrencyRequest) GetBaseCurrency() string {
 	if x != nil {
 		return x.BaseCurrency
 	}
 	return ""
 }
 
-func (x *ConvertToSpecificCurrencyRequest) GetQuoteCurrency() string {
+func (x *ConvertCurrencyRequest) GetQuoteCurrency() string {
 	if x != nil {
 		return x.QuoteCurrency
 	}
 	return ""
 }
 
-type ConvertToSpecificCurrencyResponse struct {
+type ConvertCurrencyResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -100,8 +100,8 @@ type ConvertToSpecificCurrencyResponse struct {
 	Amount float64 `protobuf:"fixed64,1,opt,name=amount,proto3" json:"amount,omitempty"`
 }
 
-func (x *ConvertToSpecificCurrencyResponse) Reset() {
-	*x = ConvertToSpecificCurrencyResponse{}
+func (x *ConvertCurrencyResponse) Reset() {
+	*x = ConvertCurrencyResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -109,13 +109,13 @@ func (x *ConvertToSpecificCurrencyResponse) Reset() {
 	}
 }
 
-func (x *ConvertToSpecificCurrencyResponse) String() string {
+func (x *ConvertCurrencyResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConvertToSpecificCurrencyResponse) ProtoMessage() {}
+func (*ConvertCurrencyResponse) ProtoMessage() {}
 
-func (x *ConvertToSpecificCurrencyResponse) ProtoReflect() protoreflect.Message {
+func (x *ConvertCurrencyResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -127,12 +127,12 @@ func (x *ConvertToSpecificCurrencyResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConvertToSpecificCurrencyResponse.ProtoReflect.Descriptor instead.
-func (*ConvertToSpecificCurrencyResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConvertCurrencyResponse.ProtoReflect.Descriptor instead.
+func (*ConvertCurrencyResponse) Descriptor() ([]byte, []int) {
 	return file_proto_digitalcurrency_digitalcurrency_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ConvertToSpecificCurrencyResponse) GetAmount() float64 {
+func (x *ConvertCurrencyResponse) GetAmount() float64 {
 	if x != nil {
 		return x.Amount
 	}
@@ -144,29 +144,27 @@ var File_proto_digitalcurrency_digitalcurrency_proto protoreflect.FileDescriptor
 var file_proto_digitalcurrency_digitalcurrency_proto_rawDesc = []byte{
 	0x0a, 0x2b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x63,
 	0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x2f, 0x64, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x63,
-	0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x84, 0x01,
-	0x0a, 0x20, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54, 0x6f, 0x53, 0x70, 0x65, 0x63, 0x69,
-	0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x62, 0x61,
-	0x73, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0c, 0x62, 0x61, 0x73, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x24,
-	0x0a, 0x0d, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72,
-	0x65, 0x6e, 0x63, 0x79, 0x22, 0x3b, 0x0a, 0x21, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54,
-	0x6f, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63,
-	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f,
-	0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
-	0x74, 0x32, 0x77, 0x0a, 0x0f, 0x44, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x43, 0x75, 0x72, 0x72,
-	0x65, 0x6e, 0x63, 0x79, 0x12, 0x64, 0x0a, 0x19, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54,
-	0x6f, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63,
-	0x79, 0x12, 0x21, 0x2e, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54, 0x6f, 0x53, 0x70, 0x65,
-	0x63, 0x69, 0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54, 0x6f,
-	0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x17, 0x5a, 0x15, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x63, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x63, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x7a, 0x0a,
+	0x16, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12,
+	0x22, 0x0a, 0x0c, 0x62, 0x61, 0x73, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x62, 0x61, 0x73, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65,
+	0x6e, 0x63, 0x79, 0x12, 0x24, 0x0a, 0x0d, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72,
+	0x65, 0x6e, 0x63, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x71, 0x75, 0x6f, 0x74,
+	0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x22, 0x31, 0x0a, 0x17, 0x43, 0x6f, 0x6e,
+	0x76, 0x65, 0x72, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x32, 0x63, 0x0a, 0x0f,
+	0x44, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12,
+	0x50, 0x0a, 0x19, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x54, 0x6f, 0x53, 0x70, 0x65, 0x63,
+	0x69, 0x66, 0x69, 0x63, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x17, 0x2e, 0x43,
+	0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x43, 0x6f, 0x6e, 0x76, 0x65, 0x72, 0x74, 0x43,
+	0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x42, 0x17, 0x5a, 0x15, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x64, 0x69, 0x67, 0x69, 0x74,
+	0x61, 0x6c, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -183,12 +181,12 @@ func file_proto_digitalcurrency_digitalcurrency_proto_rawDescGZIP() []byte {
 
 var file_proto_digitalcurrency_digitalcurrency_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_proto_digitalcurrency_digitalcurrency_proto_goTypes = []interface{}{
-	(*ConvertToSpecificCurrencyRequest)(nil),  // 0: ConvertToSpecificCurrencyRequest
-	(*ConvertToSpecificCurrencyResponse)(nil), // 1: ConvertToSpecificCurrencyResponse
+	(*ConvertCurrencyRequest)(nil),  // 0: ConvertCurrencyRequest
+	(*ConvertCurrencyResponse)(nil), // 1: ConvertCurrencyResponse
 }
 var file_proto_digitalcurrency_digitalcurrency_proto_depIdxs = []int32{
-	0, // 0: DigitalCurrency.ConvertToSpecificCurrency:input_type -> ConvertToSpecificCurrencyRequest
-	1, // 1: DigitalCurrency.ConvertToSpecificCurrency:output_type -> ConvertToSpecificCurrencyResponse
+	0, // 0: DigitalCurrency.ConvertToSpecificCurrency:input_type -> ConvertCurrencyRequest
+	1, // 1: DigitalCurrency.ConvertToSpecificCurrency:output_type -> ConvertCurrencyResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -203,7 +201,7 @@ func file_proto_digitalcurrency_digitalcurrency_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConvertToSpecificCurrencyRequest); i {
+			switch v := v.(*ConvertCurrencyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -215,7 +213,7 @@ func file_proto_digitalcurrency_digitalcurrency_proto_init() {
 			}
 		}
 		file_proto_digitalcurrency_digitalcurrency_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConvertToSpecificCurrencyResponse); i {
+			switch v := v.(*ConvertCurrencyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -259,7 +257,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DigitalCurrencyClient interface {
-	ConvertToSpecificCurrency(ctx context.Context, in *ConvertToSpecificCurrencyRequest, opts ...grpc.CallOption) (*ConvertToSpecificCurrencyResponse, error)
+	ConvertToSpecificCurrency(ctx context.Context, in *ConvertCurrencyRequest, opts ...grpc.CallOption) (*ConvertCurrencyResponse, error)
 }
 
 type digitalCurrencyClient struct {
@@ -270,8 +268,8 @@ func NewDigitalCurrencyClient(cc grpc.ClientConnInterface) DigitalCurrencyClient
 	return &digitalCurrencyClient{cc}
 }
 
-func (c *digitalCurrencyClient) ConvertToSpecificCurrency(ctx context.Context, in *ConvertToSpecificCurrencyRequest, opts ...grpc.CallOption) (*ConvertToSpecificCurrencyResponse, error) {
-	out := new(ConvertToSpecificCurrencyResponse)
+func (c *digitalCurrencyClient) ConvertToSpecificCurrency(ctx context.Context, in *ConvertCurrencyRequest, opts ...grpc.CallOption) (*ConvertCurrencyResponse, error) {
+	out := new(ConvertCurrencyResponse)
 	err := c.cc.Invoke(ctx, "/DigitalCurrency/ConvertToSpecificCurrency", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -281,14 +279,14 @@ func (c *digitalCurrencyClient) ConvertToSpecificCurrency(ctx context.Context, i
 
 // DigitalCurrencyServer is the server API for DigitalCurrency service.
 type DigitalCurrencyServer interface {
-	ConvertToSpecificCurrency(context.Context, *ConvertToSpecificCurrencyRequest) (*ConvertToSpecificCurrencyResponse, error)
+	ConvertToSpecificCurrency(context.Context, *ConvertCurrencyRequest) (*ConvertCurrencyResponse, error)
 }
 
 // UnimplementedDigitalCurrencyServer can be embedded to have forward compatible implementations.
 type UnimplementedDigitalCurrencyServer struct {
 }
 
-func (*UnimplementedDigitalCurrencyServer) ConvertToSpecificCurrency(context.Context, *ConvertToSpecificCurrencyRequest) (*ConvertToSpecificCurrencyResponse, error) {
+func (*UnimplementedDigitalCurrencyServer) ConvertToSpecificCurrency(context.Context, *ConvertCurrencyRequest) (*ConvertCurrencyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConvertToSpecificCurrency not implemented")
 }
 
@@ -297,7 +295,7 @@ func RegisterDigitalCurrencyServer(s *grpc.Server, srv DigitalCurrencyServer) {
 }
 
 func _DigitalCurrency_ConvertToSpecificCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConvertToSpecificCurrencyRequest)
+	in := new(ConvertCurrencyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -309,7 +307,7 @@ func _DigitalCurrency_ConvertToSpecificCurrency_Handler(srv interface{}, ctx con
 		FullMethod: "/DigitalCurrency/ConvertToSpecificCurrency",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DigitalCurrencyServer).ConvertToSpecificCurrency(ctx, req.(*ConvertToSpecificCurrencyRequest))
+		return srv.(DigitalCurrencyServer).ConvertToSpecificCurrency(ctx, req.(*ConvertCurrencyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

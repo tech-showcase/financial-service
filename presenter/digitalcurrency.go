@@ -16,7 +16,7 @@ func NewDigitalCurrencyServer() digitalCurrencyProto.DigitalCurrencyServer {
 	return &instance
 }
 
-func (instance *digitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *digitalCurrencyProto.ConvertToSpecificCurrencyRequest) (resp *digitalCurrencyProto.ConvertToSpecificCurrencyResponse, err error) {
+func (instance *digitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Context, req *digitalCurrencyProto.ConvertCurrencyRequest) (resp *digitalCurrencyProto.ConvertCurrencyResponse, err error) {
 	serverAddress := config.Instance.DigitalCurrency.ServerAddress
 	apiKey := config.Instance.DigitalCurrency.ApiKey
 	digitalCurrencyRepo := model.NewDigitalCurrencyRepo(serverAddress, apiKey)
@@ -32,7 +32,7 @@ func (instance *digitalCurrencyServer) ConvertToSpecificCurrency(ctx context.Con
 		return
 	}
 
-	resp = &digitalCurrencyProto.ConvertToSpecificCurrencyResponse{}
+	resp = &digitalCurrencyProto.ConvertCurrencyResponse{}
 	resp.Amount = response.Amount
 
 	return
