@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"context"
 	"errors"
 	"github.com/tech-showcase/financial-service/config"
 	"github.com/tech-showcase/financial-service/helper"
@@ -11,7 +12,7 @@ import (
 	"net/http"
 )
 
-func AuthorizationInterceptor(ctx context.Context,
+func JWTAuthenticationInterceptor(ctx context.Context,
 	req interface{},
 	info *grpc.UnaryServerInfo,
 	handler grpc.UnaryHandler) (interface{}, error) {
@@ -26,7 +27,7 @@ func AuthorizationInterceptor(ctx context.Context,
 		return nil, status.Errorf(codes.Unauthenticated, "Authorization token is not supplied")
 	}
 
-	err := authorizeJWT(authHeader[0])
+	err := authenticateJWT(authHeader[0])
 	if err != nil {
 		return nil, status.Errorf(codes.Unauthenticated, err.Error())
 	}
@@ -36,7 +37,7 @@ func AuthorizationInterceptor(ctx context.Context,
 	return h, err
 }
 
-func authorizeJWT(token string) error {
+func authenticateJWT(token string) error {
 	authEndpoint, _ := helper.JoinURL(config.Instance.Auth.ServerAddress, "/api/user")
 
 	req, err := http.NewRequest("GET", authEndpoint, nil)

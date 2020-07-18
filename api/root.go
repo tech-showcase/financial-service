@@ -26,5 +26,5 @@ func Activate(port int) {
 func withInterceptor() grpc.ServerOption {
 	return grpc.UnaryInterceptor(grpcMiddleware.ChainUnaryServer(
 		middleware.LoggingInterceptor,
-		middleware.AuthorizationInterceptor))
+		middleware.JWTAuthenticationInterceptor))
 }
