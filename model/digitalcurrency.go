@@ -14,7 +14,7 @@ type (
 		ApiKey        string
 	}
 	DigitalCurrencyRepo interface {
-		Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error)
+		Convert(value float64, assetIdBase, assetIdQuote string) (result float64, err error)
 	}
 
 	ResponseGetSpecificRate struct {
@@ -25,7 +25,7 @@ type (
 	}
 )
 
-func NewDigitalCurrencyRepoRepo(serverAddress, apiKey string) DigitalCurrencyRepo {
+func NewDigitalCurrencyRepo(serverAddress, apiKey string) DigitalCurrencyRepo {
 	instance := digitalCurrencyRepo{}
 	instance.ServerAddress = serverAddress
 	instance.ApiKey = apiKey
@@ -33,7 +33,7 @@ func NewDigitalCurrencyRepoRepo(serverAddress, apiKey string) DigitalCurrencyRep
 	return &instance
 }
 
-func (instance *digitalCurrencyRepo) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
+func (instance *digitalCurrencyRepo) Convert(value float64, assetIdBase, assetIdQuote string) (result float64, err error) {
 	endpoint, _ := helper.JoinURL(
 		instance.ServerAddress,
 		fmt.Sprintf("/v1/exchangerate/%s/%s", assetIdBase, assetIdQuote))
@@ -62,7 +62,7 @@ func (instance *digitalCurrencyRepo) Convert(value int64, assetIdBase, assetIdQu
 		return
 	}
 
-	result = float64(value) * responseStruct.Rate
+	result = value * responseStruct.Rate
 
 	return
 }
