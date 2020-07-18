@@ -9,11 +9,11 @@ import (
 )
 
 type (
-	dcRepo struct {
+	digitalCurrencyRepo struct {
 		ServerAddress string
 		ApiKey        string
 	}
-	DCRepo interface {
+	DigitalCurrencyRepo interface {
 		Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error)
 	}
 
@@ -25,15 +25,15 @@ type (
 	}
 )
 
-func NewDCRepo(serverAddress, apiKey string) DCRepo {
-	instance := dcRepo{}
+func NewDigitalCurrencyRepoRepo(serverAddress, apiKey string) DigitalCurrencyRepo {
+	instance := digitalCurrencyRepo{}
 	instance.ServerAddress = serverAddress
 	instance.ApiKey = apiKey
 
 	return &instance
 }
 
-func (instance *dcRepo) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
+func (instance *digitalCurrencyRepo) Convert(value int64, assetIdBase, assetIdQuote string) (result float64, err error) {
 	endpoint, _ := helper.JoinURL(
 		instance.ServerAddress,
 		fmt.Sprintf("/v1/exchangerate/%s/%s", assetIdBase, assetIdQuote))
