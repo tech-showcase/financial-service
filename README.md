@@ -12,6 +12,11 @@ This service serve data that is mentioned above through GRPC.
 
 ### API
 Please refer to all proto file [here](proto) for more detail about the provided API.
+You can use GRPC by:
+- Installing [protoc](http://google.github.io/proto-lens/installing-protoc.html)
+- Installing [protoc-gen-go](https://grpc.io/docs/languages/go/quickstart/)
+- Generating code by executing `protoc  --go_out=plugins=grpc:. proto/*/*.proto`
+
 
 ### How to run
 #### Docker
