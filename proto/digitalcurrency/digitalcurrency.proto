@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 service DigitalCurrency {
   rpc ConvertToSpecificCurrency(ConvertCurrencyRequest) returns (ConvertCurrencyResponse) {
     option (google.api.http) = {
-      post: "/financial/digitalcurrency/convert"
+      post: "/digitalcurrency/convert"
       body: "*"
     };
   }

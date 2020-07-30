@@ -155,7 +155,7 @@ func RegisterDigitalCurrencyHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DigitalCurrency_ConvertToSpecificCurrency_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"financial", "digitalcurrency", "convert"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DigitalCurrency_ConvertToSpecificCurrency_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"digitalcurrency", "convert"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
