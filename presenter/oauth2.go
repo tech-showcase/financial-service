@@ -1,32 +1,13 @@
 package presenter
 
 import (
-	"context"
 	"encoding/json"
-	"golang.org/x/oauth2"
+	"github.com/tech-showcase/financial-service/controller"
 	"net/http"
 )
 
-const (
-	authServerURL = "http://localhost:8080/oauth2"
-)
-
-var (
-	oauth2Config = oauth2.Config{
-		ClientID:     "082222333444",
-		ClientSecret: "082222333444",
-		Scopes:       []string{"all"},
-		RedirectURL:  "http://localhost:8082/oauth2/token",
-		Endpoint: oauth2.Endpoint{
-			AuthURL:  authServerURL + "/authorize",
-			TokenURL: authServerURL + "/token",
-		},
-	}
-	oauth2Token *oauth2.Token
-)
-
 func Authorize(w http.ResponseWriter, r *http.Request) {
-	u := oauth2Config.AuthCodeURL("xyz")
+	u := controller.Authorize()
 	http.Redirect(w, r, u, http.StatusFound)
 }
 
@@ -44,12 +25,11 @@ func Token(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := oauth2Config.Exchange(context.Background(), code)
+	token, err := controller.Token(code)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	oauth2Token = token
 
 	e := json.NewEncoder(w)
 	e.SetIndent("", "  ")
