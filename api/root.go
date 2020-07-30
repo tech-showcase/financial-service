@@ -2,11 +2,13 @@ package api
 
 import (
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
+	"os"
 )
 
 func Activate(port int) {
@@ -41,7 +43,7 @@ func ActivateHTTP(cMux cmux.CMux) {
 
 	httpListener := cMux.Match(cmux.HTTP1())
 	httpServer := &http.Server{
-		Handler: httpMux,
+		Handler: handlers.LoggingHandler(os.Stdout, httpMux),
 	}
 	go httpServer.Serve(httpListener)
 }
