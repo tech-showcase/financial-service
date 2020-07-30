@@ -15,8 +15,8 @@ Please refer to all proto file [here](proto) for more detail about the provided 
 You can use GRPC by:
 - Installing [protoc](http://google.github.io/proto-lens/installing-protoc.html)
 - Installing [protoc-gen-go](https://grpc.io/docs/languages/go/quickstart/)
-- Generating code by executing `protoc  --go_out=plugins=grpc:. proto/*/*.proto`
-
+- Generating code by executing `protoc -I./proto --go_out=plugins=grpc:. proto/*/*.proto`
+- Generating REST to gRPC gateway by executing `protoc -I./proto --grpc-gateway_out=logtostderr=true,paths=source_relative:./proto proto/*/*.proto`
 
 ### How to run
 #### Docker
