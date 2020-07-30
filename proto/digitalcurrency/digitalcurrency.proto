@@ -1,14 +1,21 @@
 syntax = "proto3";
 option go_package = "proto/digitalcurrency";
 
+import "google/api/annotations.proto";
+
 service DigitalCurrency {
-  rpc ConvertToSpecificCurrency(ConvertCurrencyRequest) returns (ConvertCurrencyResponse) {}
+  rpc ConvertToSpecificCurrency(ConvertCurrencyRequest) returns (ConvertCurrencyResponse) {
+    option (google.api.http) = {
+      post: "/financial/digitalcurrency/convert"
+      body: "*"
+    };
+  }
 }
 
 message ConvertCurrencyRequest {
   double amount = 1;
-  string baseCurrency = 2;
-  string quoteCurrency = 3;
+  string base_currency = 2;
+  string quote_currency = 3;
 }
 
 message ConvertCurrencyResponse {
