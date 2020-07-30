@@ -4,20 +4,14 @@ import (
 	"context"
 	grpcMiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/soheilhy/cmux"
 	"github.com/tech-showcase/financial-service/middleware"
 	"github.com/tech-showcase/financial-service/presenter"
 	digitalCurrencyProto "github.com/tech-showcase/financial-service/proto/digitalcurrency"
 	"google.golang.org/grpc"
-	"net/http"
 )
 
-func RegisterFinancialGRPCAPI(m cmux.CMux) {
-	grpcServer := grpc.NewServer(withInterceptor())
+func RegisterFinancialGRPCAPI(grpcServer *grpc.Server) {
 	digitalCurrencyProto.RegisterDigitalCurrencyServer(grpcServer, presenter.NewDigitalCurrencyServer())
-
-	grpcListener := m.Match(cmux.HTTP2HeaderField("content-type", "application/grpc"))
-	go grpcServer.Serve(grpcListener)
 }
 
 func withInterceptor() grpc.ServerOption {
@@ -26,14 +20,7 @@ func withInterceptor() grpc.ServerOption {
 		middleware.JWTAuthenticationInterceptor))
 }
 
-func RegisterFinancialHTTPAPI(m cmux.CMux) {
+func RegisterFinancialHTTPAPI(mux *runtime.ServeMux) {
 	ctx := context.Background()
-	mux := runtime.NewServeMux()
 	digitalCurrencyProto.RegisterDigitalCurrencyHandlerServer(ctx, mux, presenter.NewDigitalCurrencyServer())
-
-	httpServer := &http.Server{
-		Handler: mux,
-	}
-	httpListener := m.Match(cmux.HTTP1Fast())
-	go httpServer.Serve(httpListener)
 }
