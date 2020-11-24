@@ -1,7 +1,6 @@
 package helper
 
 import (
-	"encoding/json"
 	"go.uber.org/zap"
 )
 
@@ -30,7 +29,7 @@ func NewLogger() Logger {
 }
 
 func (instance *logger) Info(message string, additionalData map[string]string) {
-	fields := instance.Construct(additionalData)
+	fields := instance.construct(additionalData)
 
 	instance.logger.Info(
 		message,
@@ -39,7 +38,7 @@ func (instance *logger) Info(message string, additionalData map[string]string) {
 }
 
 func (instance *logger) Debug(message string, additionalData map[string]string) {
-	fields := instance.Construct(additionalData)
+	fields := instance.construct(additionalData)
 
 	instance.logger.Debug(
 		message,
@@ -48,7 +47,7 @@ func (instance *logger) Debug(message string, additionalData map[string]string) 
 }
 
 func (instance *logger) Warn(message string, additionalData map[string]string) {
-	fields := instance.Construct(additionalData)
+	fields := instance.construct(additionalData)
 
 	instance.logger.Warn(
 		message,
@@ -57,7 +56,7 @@ func (instance *logger) Warn(message string, additionalData map[string]string) {
 }
 
 func (instance *logger) Error(message string, additionalData map[string]string) {
-	fields := instance.Construct(additionalData)
+	fields := instance.construct(additionalData)
 
 	instance.logger.Error(
 		message,
@@ -65,11 +64,12 @@ func (instance *logger) Error(message string, additionalData map[string]string) 
 	)
 }
 
-func (instance *logger) Construct(additionalData map[string]string) []zap.Field {
+func (instance *logger) construct(additionalData map[string]string) []zap.Field {
 	fields := make([]zap.Field, 0)
 
-	additionalDataJson, _ := json.Marshal(additionalData)
-	fields = append(fields, zap.String("data", string(additionalDataJson)))
+	for index, data := range additionalData {
+		fields = append(fields, zap.String(index, data))
+	}
 
 	return fields
 }
