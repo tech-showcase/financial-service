@@ -8,7 +8,11 @@ import (
 )
 
 func init() {
-	config.Instance = config.Read()
+	var err error
+	config.Instance, err = config.Read()
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {

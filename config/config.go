@@ -1,6 +1,8 @@
 package config
 
 import (
+	"errors"
+	"fmt"
 	"os"
 )
 
@@ -20,17 +22,21 @@ type (
 	}
 )
 
+const (
+	EnvVarNotFoundErr = "env var %s not found"
+)
+
 var Instance = Config{}
 
-func Read() (config Config) {
-	config = readFromEnvVar()
+func Read() (config Config, err error) {
+	config, err = readFromEnvVar()
 
 	return
 }
 
-func readFromEnvVar() (config Config) {
+func readFromEnvVar() (config Config, err error) {
 	config.DigitalCurrency.ServerAddress = readEnvVarWithDefaultValue("DC_SERVER_ADDRESS", "http://localhost")
-	config.DigitalCurrency.ApiKey = readEnvVarWithDefaultValue("DC_API_KEY", "apiKey")
+	config.DigitalCurrency.ApiKey, err = readMandatoryEnvVar("DC_API_KEY")
 
 	config.Auth.ServerAddress = readEnvVarWithDefaultValue("AUTH_SERVER_ADDRESS", "http://localhost")
 
@@ -42,4 +48,11 @@ func readEnvVarWithDefaultValue(key, defaultValue string) string {
 		return envVarValue
 	}
 	return defaultValue
+}
+
+func readMandatoryEnvVar(key string) (string, error) {
+	if envVarValue, ok := os.LookupEnv(key); ok {
+		return envVarValue, nil
+	}
+	return "", errors.New(fmt.Sprintf(EnvVarNotFoundErr, key))
 }

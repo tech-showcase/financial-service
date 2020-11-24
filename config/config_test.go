@@ -10,9 +10,11 @@ func TestRead(t *testing.T) {
 	setDummyEnvVar()
 	expectedOutput := getDummyConfig()
 
-	config := Read()
+	config, err := Read()
 
-	if !reflect.DeepEqual(config, expectedOutput) {
+	if err != nil {
+		t.Fatal("an error occurred")
+	} else if !reflect.DeepEqual(config, expectedOutput) {
 		t.Fatal("unexpected output")
 	}
 }
