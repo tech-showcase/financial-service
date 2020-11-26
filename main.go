@@ -5,6 +5,7 @@ import (
 	"github.com/tech-showcase/financial-service/api"
 	"github.com/tech-showcase/financial-service/cmd"
 	"github.com/tech-showcase/financial-service/config"
+	"github.com/tech-showcase/financial-service/helper"
 )
 
 func init() {
@@ -13,6 +14,8 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+
+	helper.OAuth2HelperInstance = helper.NewOAuth2Helper()
 }
 
 func main() {

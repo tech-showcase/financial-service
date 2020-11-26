@@ -39,10 +39,6 @@ const (
 	authServerURL = "http://localhost:8080/oauth2"
 )
 
-func init() {
-	OAuth2HelperInstance = NewOAuth2Helper()
-}
-
 func NewOAuth2Helper() OAuth2Helper {
 	var instance oauth2Helper
 
