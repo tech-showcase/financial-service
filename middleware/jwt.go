@@ -38,7 +38,7 @@ func JWTAuthenticationInterceptor(ctx context.Context,
 }
 
 func authenticateJWT(token string) error {
-	authEndpoint, _ := helper.JoinURL(config.Instance.Auth.ServerAddress, "/api/user")
+	authEndpoint, _ := helper.JoinURL(config.Instance.Auth.ServerAddress, "/jwt/user")
 
 	req, err := http.NewRequest("GET", authEndpoint, nil)
 	if err != nil {
