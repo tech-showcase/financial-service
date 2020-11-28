@@ -38,7 +38,7 @@ func readFromEnvVar() (config Config, err error) {
 	config.DigitalCurrency.ServerAddress = readEnvVarWithDefaultValue("DC_SERVER_ADDRESS", "http://localhost")
 	config.DigitalCurrency.ApiKey, err = readMandatoryEnvVar("DC_API_KEY")
 
-	config.Auth.ServerAddress = readEnvVarWithDefaultValue("AUTH_SERVER_ADDRESS", "http://localhost")
+	config.Auth.ServerAddress = readEnvVarWithDefaultValue("AUTH_SERVER_ADDRESS", "http://localhost:8080")
 
 	return
 }
