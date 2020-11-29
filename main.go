@@ -15,7 +15,7 @@ func init() {
 		panic(err)
 	}
 
-	helper.OAuth2HelperInstance = helper.NewOAuth2Helper()
+	helper.OAuth2HelperInstance = helper.NewOAuth2Helper(config.Instance.Auth.ServerAddress)
 }
 
 func main() {
