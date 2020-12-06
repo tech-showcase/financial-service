@@ -6,4 +6,4 @@ spec:
   grpc: True
   prefix: /DigitalCurrency/
   rewrite: /DigitalCurrency/
-  service: http://financial-service:8080
+  service: financial-service:8080
