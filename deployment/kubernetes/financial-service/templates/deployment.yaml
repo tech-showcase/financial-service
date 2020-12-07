@@ -35,16 +35,21 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8082
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          env:
+            - name: DC_SERVER_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: financial-service
+                  key: DC_SERVER_ADDRESS
+            - name: DC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: financial-service
+                  key: DC_API_KEY
+            - name: AUTH_SERVER_ADDRESS
+              value: http://auth-service:8080
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
