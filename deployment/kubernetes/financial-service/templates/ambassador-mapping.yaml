@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  name:  {{ include "financial-service.fullname" . }}
+spec:
+  grpc: True
+  prefix: /DigitalCurrency/
+  rewrite: /DigitalCurrency/
+  service: {{ include "financial-service.fullname" . }}:{{ .Values.service.port }}
