@@ -37,8 +37,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8082
 
 ingress:
   enabled: false
@@ -77,3 +77,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secret:
+  create: true
+  values:
+    DC_SERVER_ADDRESS: 'aHR0cDovL3Jlc3Qtc2FuZGJveC5jb2luYXBpLmlv'
+    DC_API_KEY: 'QTgyQjY3RDktQUYyNi00MjJELTg3REUtOEZFRDkxNEU0MzZF'
+    AUTH_SERVER_ADDRESS: 'aHR0cDovL2xvY2FsaG9zdDo4MDgw'
