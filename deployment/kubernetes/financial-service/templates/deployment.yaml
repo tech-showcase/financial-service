@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8082
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
             - name: DC_SERVER_ADDRESS
